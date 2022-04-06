@@ -1,2 +1,3 @@
 # Programmazione-B
-test
+Fondamenti di Programmazione - Parte B
+Linguaggi utilizzati: c++ e java
