@@ -1,3 +1,3 @@
 # Programmazione-B
-Fondamenti di Programmazione - Parte B
-Linguaggi utilizzati: c++ e java
+Unipr - Fondamenti di Programmazione - Parte B
+- c++ e java
