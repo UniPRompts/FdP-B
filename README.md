@@ -1,2 +1,3 @@
 # Programmazione-B
-test
+Unipr - Fondamenti di Programmazione - Parte B
+- c++ e java
