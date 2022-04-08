@@ -1,9 +1,6 @@
-// NON FUNZIONANTE!!
-
 package com.myPackage;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Set<T> {
 
@@ -11,11 +8,10 @@ public class Set<T> {
 
     //  Costructor vuoto inizializza a 0 elementi
     public Set(){
-        //elements = new T[1];
-        elements = new ArrayList<T>(7);
+        elements = new ArrayList<T>();
     }
 
-    // Get Size StringSet
+    // Get Size Set
     public int size(){
         return elements.size();
     }
@@ -40,16 +36,8 @@ public class Set<T> {
      * @param other elemento da aggiungere al set
      */
     public void add(T other){
-        if(!contains(other)){
-            ArrayList<T> new_s = new ArrayList<T>(size() + 1);
-
-            for(int i = 0; i < size(); i++)
-                new_s.set(i, elements.get(i));
-
-            new_s.set(this.size(), other);
-
-            this.elements = new_s;
-        }
+        if(!contains(other))
+            elements.add(other);
     }
 
     /**
@@ -65,7 +53,7 @@ public class Set<T> {
     }
 
     /**
-     * Unisce due StringSet
+     * Unisce due Set
      * @param other
      * @return risultato unione
      */
@@ -81,7 +69,7 @@ public class Set<T> {
     }
 
     /**
-     * Interseca due StringSet
+     * Interseca due Set
      * @param other
      * @return risultato intersezione
      */
@@ -96,7 +84,7 @@ public class Set<T> {
     }
 
     /**
-     * Verifica se this è subSet di un StringSet dato
+     * Verifica se this è subSet di un Set dato
      * @param other
      * @return true se è subset, false altrimenti
      */
@@ -111,14 +99,28 @@ public class Set<T> {
         return true;
     }
 
-
     public static void main(String[] args) {
-        Set<Integer> test = new Set<Integer>();
-        System.out.println(test.size());
-        test.add(10);
-        System.out.println(test.size());
-        test.add(11);
-        test.add(12);
-        System.out.println(test.getString());
+        Set<Integer> s1 = new Set<Integer>();
+        s1.add(10);
+        s1.add(11);
+        s1.add(12);
+        s1.add(12);
+        System.out.println(s1.getString());
+
+        Set<String> s2 = new Set<String>();
+        s2.add("10");
+        s2.add("uva");
+        s2.add("uva");
+        s2.add("gg");
+        System.out.println(s2.getString());
+
+        Set<String> s3 = new Set<String>();
+        s3.add("x");
+        s3.add("uva");
+        s3.add("uva");
+        System.out.println(s3.getString());
+        System.out.println(s3.isSubsetOf(s2));
+        System.out.println(s3.intersetion(s2).getString());
+        System.out.println(s3.union(s2).getString());
     }
 }
