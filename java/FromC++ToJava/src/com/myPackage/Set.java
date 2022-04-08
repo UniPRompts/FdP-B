@@ -12,7 +12,7 @@ public class Set<T> {
     //  Costructor vuoto inizializza a 0 elementi
     public Set(){
         //elements = new T[1];
-        elements = new ArrayList<>(7);
+        elements = new ArrayList<T>(7);
     }
 
     // Get Size StringSet
@@ -41,7 +41,7 @@ public class Set<T> {
      */
     public void add(T other){
         if(!contains(other)){
-            ArrayList<T> new_s = new ArrayList<>(size() + 1);
+            ArrayList<T> new_s = new ArrayList<T>(size() + 1);
 
             for(int i = 0; i < size(); i++)
                 new_s.set(i, elements.get(i));
