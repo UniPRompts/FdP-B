@@ -1,3 +1,4 @@
-# Programmazione-B
-Unipr - Fondamenti di Programmazione - Parte B
-- c++ e java
+# Fondamenti di Programmazione - Parte B
+Esercizi / esercitazioni in:
+  - C++
+  - Java
