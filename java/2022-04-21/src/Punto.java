@@ -7,7 +7,7 @@ public class Punto {
      * È un campo di classe,
      * è come se fosse una variabile globale
      */
-    public static int allocs = 0;
+    private static int allocs = 0;
 
     /**
      * Costruttori
@@ -31,6 +31,9 @@ public class Punto {
     public int getX() {
         return this.x;
     }
+    public static int getAllocs(){
+        return allocs;
+    }
 
     /**
      * Override metodo toString
@@ -53,14 +56,5 @@ public class Punto {
      */
     public boolean equals(Punto other) {
         return getX() == other.getX() && getY() == other.getY();
-    }
-
-    public static void main(String[] args) {
-        Punto p1 = new Punto(1,2);
-        Punto p2 = new Punto(3,4);
-
-        System.out.println(p1);
-        System.out.println(p2);
-        System.out.println(Punto.allocs);
     }
 }
