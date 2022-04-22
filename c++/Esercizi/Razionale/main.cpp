@@ -7,8 +7,7 @@ class Razionale {
 		int d;
 	public:
         ~Razionale(){
-            cout << "\nSto morendo... ";
-            this->stampa();
+
         }
 
 		Razionale() {
@@ -26,6 +25,14 @@ class Razionale {
 
             semplifica();
 		}
+
+        int getNum(){
+            return n;
+        }
+
+        int getDen(){
+            return d;
+        }
 
 		void leggi() {
 			int num, den;
@@ -80,6 +87,16 @@ class Razionale {
             d /= mcd;
         }
 
+        bool static isSemplified(Razionale other){
+            if(other.getDen() % other.getNum() == 0)
+                return false;
+            if(other.getNum() % other.getDen() == 0)
+                return false;
+            if(MCD(other.getDen(), other.getNum()) != 1)
+                return false;
+            return true;
+        }
+
 		Razionale somma(Razionale other) {
 			Razionale risultato;
 			risultato.d = d * other.d;
@@ -88,8 +105,14 @@ class Razionale {
 			return risultato;
 		}
 
-
-
+        int static MCD(int a, int b) {
+            if(b == 0)
+                return a;
+            if(a >= b)
+                return MCD(a - b, b);
+            else
+                return MCD(b - a, a);
+        }
 };
 
 Razionale operator+(int x, Razionale r) {
