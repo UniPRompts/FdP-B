@@ -10,8 +10,7 @@ public class Razionale {
      * Constructor
      */
     public Razionale(){
-        this.den = 1;
-        this.num = 1;
+        this(1, 1);
     }
     /**
      * Costruttore con due campi, controlla se il den != 0. Se è uguale lo inizializza a 1
@@ -26,7 +25,7 @@ public class Razionale {
             this.den = 1;
             System.err.println("Errore - Denominatore uguale a zero!");
         }
-        semplifica();
+        //simplify();
     }
     /**
      * Getter
@@ -88,7 +87,7 @@ public class Razionale {
         this.den = den;
         this.num = num;
 
-        semplifica();
+        simplify();
 
         sc.close();
     }
@@ -99,7 +98,7 @@ public class Razionale {
      * @param b
      * @return mcm
      */
-    public int mcm(int a, int b) {
+    public static int mcm(int a, int b) {
         return (a * b) / MCD(a, b);
     }
     /**
@@ -108,7 +107,7 @@ public class Razionale {
      * @param b
      * @return MCD
      */
-    public int MCD(int a, int b) {
+    public static int MCD(int a, int b) {
         if(b == 0)
             return a;
         if(a >= b)
@@ -119,7 +118,7 @@ public class Razionale {
     /**
      * Riduce ai minimi termini, se possibile, un numero razionale
      */
-    public void semplifica(){
+    public void simplify(){
         if(getDen() % getNum() == 0){
             this.den /= this.num;
             this.num = 1;
@@ -136,7 +135,20 @@ public class Razionale {
             this.den /= MCD;
             return;
         }
-
+    }
+    /**
+     * Verifica se un numero Razionale è ridotto ai minimi termini.
+     * @param other numero razionale
+     * @return true se verifica la condizione iniziale, false altrimenti
+     */
+    public static boolean isSimplified(Razionale other){
+        if(other.getDen() % other.getNum() == 0)
+            return false;
+        if(other.getNum() % other.getDen() == 0)
+            return false;
+        if(MCD(other.getDen(), other.getNum()) != 1)
+            return false;
+        return true;
     }
     /**
      * Fa la somma tra due numeri Razionale
@@ -148,7 +160,7 @@ public class Razionale {
 
         result.num = getNum() * other.getDen() + getDen() * other.getNum();
         result.den = getDen() * other.getDen();
-        result.semplifica();
+        result.simplify();
 
         return result;
     }
@@ -177,13 +189,10 @@ public class Razionale {
         Razionale r1 = new Razionale(2, 3);
         System.out.println("r1: " + r1);
 
-        Razionale r2 = new Razionale(4, 7);
+        Razionale r2 = new Razionale(4, 6);
         System.out.println("r2: " + r2);
 
-        System.out.println("r3 = r1 + r2: " + r1.sum(r2));
-        System.out.println(r1.clone());
-
-        // System.out.println("r1.equals(r2): " + r1.equals(r2));
+        System.out.println("isSimplified(r2): " + Razionale.isSimplified(r2));
     }
 
 }
