@@ -1,13 +1,16 @@
+package segment;
+import punto.*;
+
 /**
- * Si consideri la classe Punto vista a lezione.
- * Si implementi in Java la classe Segment, che rappresenta un segmento collocato nel piano Cartesiano.
- * Il costruttore accetta come parametri due oggetti della classe Punto (x1,y1) e (x2,y2).
+ * Si consideri la classe punto.Punto vista a lezione.
+ * Si implementi in Java la classe segment.Segment, che rappresenta un segmento collocato nel piano Cartesiano.
+ * Il costruttore accetta come parametri due oggetti della classe punto.Punto (x1,y1) e (x2,y2).
  * Implementare il metodo getMidpoint che ritorna il punto medio del segmento su cui è invocato il metodo.
  * Implementare il metodo equals in modo che due segmenti siano considerati uguali se hanno gli stessi vertici.
  * Implementare il metodo clone in modo tale che ritorni una deep copy dell'oggetto su cui è invocato il metodo.
  *
- * N.B., postare i file Punto.Java e Segmento.java. Se lo si ritiene necessario, è possibile modificare la
- * classe Punto vista a lezione.
+ * N.B., postare i file punto.Punto.Java e Segmento.java. Se lo si ritiene necessario, è possibile modificare la
+ * classe punto.Punto vista a lezione.
  */
 public class Segment {
     private Punto p1, p2;

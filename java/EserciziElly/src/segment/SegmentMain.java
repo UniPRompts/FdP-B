@@ -1,4 +1,7 @@
-public class Main {
+package segment;
+import punto.*;
+
+public class SegmentMain {
     public static void main(String[] args) {
         Punto p1 = new Punto(2, 5);
         Punto p2 = new Punto(6, 7);

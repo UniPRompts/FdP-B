@@ -1,3 +1,5 @@
+package contoCorrente;
+
 public class ContoCorrenteMain {
     public static void main(String[] args) {
         ContoCorrente c1 = new ContoCorrente("Mattia", "Merenda", 2000);

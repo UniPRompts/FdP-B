@@ -1,3 +1,5 @@
+package contoCorrente;
+
 public class ContoCorrente {
     private String name;
     private String lastName;

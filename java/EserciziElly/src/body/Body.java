@@ -1,7 +1,9 @@
+package body;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Si implementi in Java una classe Body che rappresenta un corpo puntiforme dotato di massa,
+ * Si implementi in Java una classe body.Body che rappresenta un corpo puntiforme dotato di massa,
  * che cade soggetto solo alla forza di gravità terrestre.
  * Il costruttore prende come parametro la massa del corpo e la sua altezza iniziale.
  * Si supponga che tutte le grandezze siano espresse in unità tra loro omogenee
@@ -80,10 +82,5 @@ public class Body {
      */
     public static Float process(){
         return ThreadLocalRandom.current().nextFloat() * 10;
-    }
-
-    public static void main(String[] args) {
-        Body b1 = new Body(15F, 100F);
-        b1.getString();
     }
 }

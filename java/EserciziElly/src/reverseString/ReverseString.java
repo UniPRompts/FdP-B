@@ -1,3 +1,5 @@
+package reverseString;
+
 import java.util.Scanner;
 
 public class ReverseString {
