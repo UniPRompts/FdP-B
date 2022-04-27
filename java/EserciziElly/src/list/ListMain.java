@@ -2,7 +2,7 @@ package list;
 
 public class ListMain {
     public static void main(String[] args) {
-        List<Integer> l = new List();
+        List<Integer> l = new List<Integer>();
 
         l.addFirst(1);
         l.addLast(2);
