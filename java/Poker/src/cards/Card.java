@@ -51,9 +51,9 @@ public class Card {
         String str = "";
 
         switch (getSuit()){
-            case 1: str += "\u2666 "; break;
+            case 1: str += "\u001B[31m \u2666 "; break;
             case 2: str += "\u2663 "; break;
-            case 3: str += "\u2665 "; break;
+            case 3: str += "\u001B[31m \u2665 "; break;
             case 4: str += "\u2660 "; break;
         }
 
@@ -64,6 +64,8 @@ public class Card {
             case 14: str += "A"; break;
             default: str += getNumber(); break;
         }
+
+        str += "\u001B[0m";
 
         return str;
     }
