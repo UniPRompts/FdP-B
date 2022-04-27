@@ -1,17 +1,17 @@
-package intList;
+package list;
 
-public class Elem {
-    private int value;
+public class Elem<T> {
+    private T value;
     private Elem next;
 
     /**
      * Costruttore
      * @param value
      */
-    public Elem(int value){
+    public Elem(T value){
         this(value, null);
     }
-    public Elem(int value, Elem next){
+    public Elem(T value, Elem<T> next){
         setValue(value);
         setNext(next);
     }
@@ -20,10 +20,10 @@ public class Elem {
      * Getter
      * @return
      */
-    int getValue(){
+    T getValue(){
         return this.value;
     }
-    Elem getNext(){
+    Elem<T> getNext(){
         return next;
     }
 
@@ -31,10 +31,10 @@ public class Elem {
      * Setter
      * @param value
      */
-    void setValue(int value){
+    void setValue(T value){
         this.value = value;
     }
-    void setNext(Elem next){
+    void setNext(Elem<T> next){
         this.next = next;
     }
 }

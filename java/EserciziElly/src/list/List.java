@@ -1,31 +1,57 @@
-package intList;
+package list;
 
-public class IntList {
-    private Elem list;
+public class List<T> {
+    private Elem<T> list;
     private int n; // lunghezza
 
     /**
      * Costruttore
      */
-    public IntList(){
+    public List(){
         this.list = null;
         this.n = 0;
     }
 
     /**
-     * Getter
-     * @return
+     * Getter size
+     * @return size
      */
     public int size(){
         return this.n;
+    }
+    /**
+     * Getter ultimo elemento
+     * @return ultimo elemento
+     */
+    public Elem<T> getLastElement(){
+        Elem<T> temp = list;
+        for(int i = 0; i < n - 1; i++)
+            temp = temp.getNext();
+        return temp;
+    }
+    /**
+     * Getter elemento scelto da utente tramite indice
+     * @param index indice
+     * @return elemento voluto
+     */
+    public T getValue(int index){
+        if(index >= n || list == null)
+            throw new RuntimeException();
+
+        Elem<T> temp = list;
+        for(int i = 0; i < index - 1; i++)
+            temp = temp.getNext();
+
+        return temp.getValue();
+
     }
 
     /**
      * Inserisce un nuovo elemento in testa
      * @param value valore elemento da inserire
      */
-    public void addFirst(int value){
-        Elem new_elem = new Elem(value, list);
+    public void addFirst(T value){
+        Elem<T> new_elem = new Elem(value, list);
         list = new_elem;
         this.n++;
     }
@@ -33,14 +59,8 @@ public class IntList {
      * Inserisce un nuovo elemento in coda
      * @param value valore elemento da inserire
      */
-    public void addLast(int value){
-        Elem new_elem = new Elem(value);
-        Elem temp = list;
-
-        for(int i = 0; i < n - 1; i++)
-            temp = temp.getNext();
-
-        temp.setNext(new_elem);
+    public void addLast(T value){
+        getLastElement().setNext(new Elem(value));
         this.n++;
     }
 
@@ -48,11 +68,11 @@ public class IntList {
      * Rimuove un elemento dalla testa
      * @return valore elemento
      */
-    public int removeFirst(){
+    public T removeFirst(){
         if(list == null)
             throw new RuntimeException();
-        int value = list.getValue();
 
+        T value = list.getValue();
         list = list.getNext();
         this.n--;
 
@@ -62,14 +82,12 @@ public class IntList {
      * Rimuove un elemento dalla coda
      * @return valore elemento
      */
-    public int removeLast(){
-        Elem temp = list;
-
-        for(int i = 0; i < n - 1; i++)
-            temp = temp.getNext();
+    public T removeLast(){
+        if(list == null)
+            throw new RuntimeException();
 
         this.n--;
-        return temp.getValue();
+        return getLastElement().getValue();
     }
 
     /**
@@ -77,8 +95,8 @@ public class IntList {
      * @param value valore da cercare
      * @return true se è contenuto, false altrimenti
      */
-    public boolean contains(int value){
-        Elem temp = list;
+    public boolean contains(T value){
+        Elem<T> temp = list;
         for(int i = 0; i < n; i++){
             if(value == temp.getValue())
                 return true;

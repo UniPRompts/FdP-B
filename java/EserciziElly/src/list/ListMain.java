@@ -1,8 +1,8 @@
-package intList;
+package list;
 
-public class IntListMain {
+public class ListMain {
     public static void main(String[] args) {
-        IntList l = new IntList();
+        List<Integer> l = new List();
 
         l.addFirst(1);
         l.addLast(2);
