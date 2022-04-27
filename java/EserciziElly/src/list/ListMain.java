@@ -6,9 +6,9 @@ public class ListMain {
 
         l.addFirst(1);
         l.addLast(2);
-        l.addLast(3);
+        l.addLast(19);
         l.addLast(4);
-        l.addFirst(0);
+        l.addFirst(9);
 
         System.out.println(l);
     }

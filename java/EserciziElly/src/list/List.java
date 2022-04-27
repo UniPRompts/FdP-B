@@ -1,6 +1,6 @@
 package list;
 
-public class List<T> {
+public class List<T extends Comparable<T>> {
     private Elem<T> list;
     private int n; // lunghezza
 
@@ -103,6 +103,44 @@ public class List<T> {
             temp = temp.getNext();
         }
         return false;
+    }
+
+    /**
+     * Ritorna il massimo valore della lista
+     * @return max
+     */
+    public T max(){
+        if(list == null)
+            throw new RuntimeException();
+        T max = list.getValue();
+        Elem<T> temp = list;
+
+        for(int i = 0; i < n; i++){
+            if(temp.getValue().compareTo(max) == 1)
+                max = temp.getValue();
+            temp = temp.getNext();
+        }
+
+        return max;
+    }
+
+    /**
+     * Ritorna il minimo valore della lista
+     * @return min
+     */
+    public T min(){
+        if(list == null)
+            throw new RuntimeException();
+        T min = list.getValue();
+        Elem<T> temp = list;
+
+        for(int i = 0; i < n; i++){
+            if(temp.getValue().compareTo(min) == -1)
+                min = temp.getValue();
+            temp = temp.getNext();
+        }
+
+        return min;
     }
 
     /**
