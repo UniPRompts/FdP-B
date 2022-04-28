@@ -7,6 +7,23 @@ public class User {
     private String name;
 
     /**
+     * Valori variabile
+     * 0: init
+     * 1: scala reale
+     * 2: scala colore
+     * 3: poker
+     * 4: full
+     * 5: colore
+     * 6: scala
+     * 7: tris
+     * 8: doppia coppia
+     * 9: coppia
+     * 10: carta alta
+     */
+    public int point;
+    public int maxValuePoint;
+
+    /**
      * Costruttori
      */
     public User(String name){
@@ -16,6 +33,8 @@ public class User {
         this.name = name;
         this.c1 = c1;
         this.c2 = c2;
+        this.point = 0;
+        this.maxValuePoint = 0;
     }
 
     /**

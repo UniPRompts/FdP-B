@@ -1,7 +1,5 @@
 package users;
-import cards.Card;
-import cards.GenerateCard;
-
+import cards.*;
 import java.util.*;
 
 public class Dealer {
@@ -31,11 +29,14 @@ public class Dealer {
         cards.add(GenerateCard.generate());
     }
 
+    /**
+     * Override metodo toString
+     * @return
+     */
     public String toString(){
         String str = "Dealer: ";
         for (int i = 0; i < cards.size(); i++)
             str += cards.get(i) + " ";
         return str;
     }
-
 }

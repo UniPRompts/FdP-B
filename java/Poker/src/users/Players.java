@@ -1,6 +1,7 @@
 package users;
 import java.io.*;
 import java.util.*;
+import winners.*;
 
 public class Players {
     public static List<User> players;
@@ -21,7 +22,7 @@ public class Players {
         Scanner sc = new Scanner(System.in);
 
         do{
-            System.out.print("Numero giocatori (1 < n < 11): ");
+            System.out.print("Inserire il numero dei giocatori (max 10, min 2): ");
             n = sc.nextInt();
         } while (n < 1 || n > 10);
 
@@ -73,5 +74,10 @@ public class Players {
      */
     public String toString(){
         return printCardsPlayers();
+    }
+
+    public void updatePoints(){
+        for(int i = 0; i < players.size(); i++)
+            players.get(i).point = Winner.returnPoints(players.get(i));
     }
 }
