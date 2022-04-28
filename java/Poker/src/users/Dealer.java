@@ -35,7 +35,7 @@ public class Dealer {
      */
     public String toString(){
         String str = "Dealer: ";
-        for (int i = 0; i < cards.size(); i++)
+        for(int i = 0; i < cards.size(); i++)
             str += cards.get(i) + " ";
         return str;
     }

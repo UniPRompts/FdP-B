@@ -18,13 +18,24 @@ public class Players {
      * crea oggetto User per ogni giocatore e li inserisce nella lista players
      */
     public void createPlayers(){
-        int n = 0;
+        players.add(new User("user0"));
+        players.add(new User("user1"));
+        players.add(new User("user2"));
+        players.add(new User("user3"));
+        players.add(new User("user4"));
+        players.add(new User("user5"));
+        players.add(new User("user6"));
+        players.add(new User("user7"));
+        players.add(new User("user8"));
+        players.add(new User("user9"));
+
+        /*int n = 0;
         Scanner sc = new Scanner(System.in);
 
         do{
             System.out.print("Inserire il numero dei giocatori (max 10, min 2): ");
             n = sc.nextInt();
-        } while (n < 1 || n > 10);
+        } while (n < 2 || n > 10);
 
         for(int i = 0; i < n; i++){
             System.out.print("Inserire nome " + (i + 1) + " giocatore: ");
@@ -33,7 +44,7 @@ public class Players {
             players.add(new User(name));
         }
 
-        sc.close();
+        sc.close();*/
     }
 
     /**
@@ -76,8 +87,60 @@ public class Players {
         return printCardsPlayers();
     }
 
+    /**
+     * Richiama la funzione per calcolare il punto per ogni utente
+     */
     public void updatePoints(){
         for(int i = 0; i < players.size(); i++)
-            players.get(i).point = Winner.returnPoints(players.get(i));
+            Winner.returnPoints(players.get(i));
+    }
+
+    /**
+     * Stampa a video il punto
+     */
+    public void printPoints(){
+        System.out.println("Risultati:");
+
+        for(int i = 0; i < players.size(); i++){
+            switch(players.get(i).point){
+                case 1:
+                    System.out.println(players.get(i).getName() + " -> scala reale");
+                    break;
+
+                case 2:
+                    System.out.println(players.get(i).getName() + " -> scala colore");
+                    break;
+
+                case 3:
+                    System.out.println(players.get(i).getName() + " -> poker");
+                    break;
+
+                case 4:
+                    System.out.println(players.get(i).getName() + " -> full");
+                    break;
+
+                case 5:
+                    System.out.println(players.get(i).getName() + " -> colore");
+                    break;
+
+                case 6: System.out.println(players.get(i).getName() + " -> scala");
+                    break;
+
+                case 7:
+                    System.out.println(players.get(i).getName() + " -> tris");
+                    break;
+
+                case 8:
+                    System.out.println(players.get(i).getName() + " -> doppia coppia");
+                    break;
+
+                case 9:
+                    System.out.println(players.get(i).getName() + " -> coppia");
+                    break;
+
+                case 10:
+                    break;
+            }
+        }
     }
 }

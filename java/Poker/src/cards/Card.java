@@ -51,9 +51,9 @@ public class Card {
         String str = "";
 
         switch (getSuit()){
-            case 1: str += "\u001B[31m \u2666 "; break;
+            case 1: str += "\u001B[31m\u2666 "; break;
             case 2: str += "\u2663 "; break;
-            case 3: str += "\u001B[31m \u2665 "; break;
+            case 3: str += "\u001B[31m\u2665 "; break;
             case 4: str += "\u2660 "; break;
         }
 
@@ -69,5 +69,4 @@ public class Card {
 
         return str;
     }
-
 }

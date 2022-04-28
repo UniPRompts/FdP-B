@@ -1,5 +1,5 @@
 package games;
-import cards.CardsReleased;
+import cards.*;
 import users.*;
 
 public class Game {
@@ -13,8 +13,10 @@ public class Game {
 
         System.out.println("\n" + dealer);
         System.out.println(players);
-        System.out.println(CardsReleased.print());
 
         players.updatePoints();
+        players.printPoints();
+
+        System.out.println("\n" + CardsReleased.print());
     }
 }
