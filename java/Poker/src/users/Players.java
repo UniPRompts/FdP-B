@@ -1,6 +1,8 @@
 package users;
 import java.io.*;
 import java.util.*;
+
+import utility.*;
 import winners.*;
 
 public class Players {
@@ -96,51 +98,55 @@ public class Players {
     }
 
     /**
-     * Stampa a video il punto
+     * Stampa a video il punto per ogni giocatore (se è stato effettuato)
      */
     public void printPoints(){
         System.out.println("Risultati:");
 
         for(int i = 0; i < players.size(); i++){
-            switch(players.get(i).point){
-                case 1:
-                    System.out.println(players.get(i).getName() + " -> scala reale");
-                    break;
+            if(players.get(i).point != 10)
+                System.out.println(players.get(i).getName() + " -> " + players.get(i).getPointToString());
+        }
+    }
 
-                case 2:
-                    System.out.println(players.get(i).getName() + " -> scala colore");
-                    break;
+    /**
+     * In caso di piu utenti con lo stesso punto,
+     * ritorna quello con le carte maggiori
+     * @return
+     */
+    public User getRealWinner(){
+        User winner = null;
+        boolean first = false;
+        for(int i = 0; i < players.size(); i++){
+            if(players.get(i).point == Utility.getMin(players)){
+                if(!first){
+                    winner = players.get(i);
+                    first = true;
+                }
+                else {
+                    int sum1 = winner.getC1().getNumber() + winner.getC2().getNumber();
+                    int sum2 = players.get(i).getC1().getNumber() + players.get(i).getC2().getNumber();
 
-                case 3:
-                    System.out.println(players.get(i).getName() + " -> poker");
-                    break;
-
-                case 4:
-                    System.out.println(players.get(i).getName() + " -> full");
-                    break;
-
-                case 5:
-                    System.out.println(players.get(i).getName() + " -> colore");
-                    break;
-
-                case 6: System.out.println(players.get(i).getName() + " -> scala");
-                    break;
-
-                case 7:
-                    System.out.println(players.get(i).getName() + " -> tris");
-                    break;
-
-                case 8:
-                    System.out.println(players.get(i).getName() + " -> doppia coppia");
-                    break;
-
-                case 9:
-                    System.out.println(players.get(i).getName() + " -> coppia");
-                    break;
-
-                case 10:
-                    break;
+                    if(sum2 > sum1)
+                        winner = players.get(i);
+                }
             }
         }
+        return winner;
+    }
+
+    /**
+     * Stampa a video il vincitore
+     */
+    public void printWinner(){
+        int min = Utility.getMin(players);
+
+        System.out.println("\nVincitore: ");
+        if(Utility.getNumberOfMin(players) == 1){
+            for(int i = 0; i < players.size(); i++)
+                if(players.get(i).point == min)
+                    System.out.println(players.get(i).toString() + "\n\t-> " + players.get(i).getPointToString());
+        } else
+            System.out.println(getRealWinner().toString() + "\n\t-> " + getRealWinner().getPointToString());
     }
 }

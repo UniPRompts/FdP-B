@@ -33,7 +33,7 @@ public class User {
         this.name = name;
         this.c1 = c1;
         this.c2 = c2;
-        this.point = 0;
+        this.point = 99; // inizializzato a null
         this.maxValuePoint = 0;
     }
 
@@ -49,6 +49,53 @@ public class User {
     }
     public String getName() {
         return name;
+    }
+    public String getPointToString(){
+        String str = "";
+
+        switch(point){
+            case 1:
+                str = "Scala Reale";
+                break;
+
+            case 2:
+                str = "Scala Colore";
+                break;
+
+            case 3:
+                str = "Poker";
+                break;
+
+            case 4:
+                str = "Full";
+                break;
+
+            case 5:
+                str = "Colore";
+                break;
+
+            case 6:
+                str = "Scala";
+                break;
+
+            case 7:
+                str = "Tris";
+                break;
+
+            case 8:
+                str = "Doppia Coppia";
+                break;
+
+            case 9:
+                str = "Coppia";
+                break;
+
+            case 10:
+                str = "Carta Alta";
+                break;
+        }
+
+        return str;
     }
 
     /**

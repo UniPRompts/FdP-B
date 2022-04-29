@@ -3,6 +3,7 @@ import cards.*;
 import users.*;
 
 public class Winner {
+    public static int [] counter;
     /**
      * Ritorna quante volte una carte è presente nelle carte del dealer
      * @param card
@@ -73,35 +74,15 @@ public class Winner {
 
         return counter;
     }
-// ------------------------------------------------------------------------------ Dealer
-    /**
-     * Coppia Dealer
-     * @return
-     */
-    public static boolean coppiaDealer(){
-        return countValue(1) == 2;
-    }
-    /**
-     * Tris Dealer
-     * @return
-     */
-    public static boolean trisDealer(){
-        return countValue(2) == 3;
-    }
-    /**
-     * Doppia coppia Dealer
-     * @return
-     */
-    public static boolean doppiaCoppiaDealer(){
-        return countValue(1) == 4;
-    }
+
+    // ------------------------------------------------------------------------------ Dealer
     /**
      * Colore Dealer
-     * @param counter
+     * @param color
      */
-    public static void coloreDealer(int[] counter){
+    public static void coloreDealer(int[] color){
         for(int i = 0; i < Dealer.cards.size(); i++)
-            counter[Dealer.cards.get(i).getSuit()]++;
+            color[Dealer.cards.get(i).getSuit()]++;
     }
 
     // ------------------------------------------------------------------------------ User
@@ -115,53 +96,50 @@ public class Winner {
     }
     /**
      * Coppia
-     * @param user
      * @return
      */
-    public static boolean coppia(User user){
-        int c1 = getOccorrenze(user.getC1());
-        int c2 = getOccorrenze(user.getC2());
+    public static boolean coppia(){
+        for(int i = 0; i < counter.length; i++)
+            if(counter[i] == 2)
+                return true;
+        return false;
 
-        if(coppiaInMano(user)) return true;
-        return c1 == 1 || c2 == 1;
     }
     /**
      * Doppia coppia
-     * @param user
      * @return
      */
-    public static boolean doppiaCoppia(User user){
-        int c1 = getOccorrenze(user.getC1());
-        int c2 = getOccorrenze(user.getC2());
+    public static boolean doppiaCoppia(){
+        boolean check1 = false;
+        boolean check2 = false;
 
-        //if(coppiaDealer() && coppia(user)) return true;
-        return c1 == 1 && c2 == 1;
+        for(int i = 0; i < counter.length; i++){
+            if(i != 0){
+                if(counter[i] == 2)
+                    if(!check1)
+                        check1 = true;
+                    else
+                        check2 = true;
+            }
+
+        }
+        return check1 && check2;
     }
     /**
      * Tris
-     * @param user
      * @return
      */
-    public static boolean tris(User user){
-        int c1 = getOccorrenze(user.getC1());
-        int c2 = getOccorrenze(user.getC2());
-
-        if(coppiaInMano(user) && c1 == 1) return true;
-        return c1 == 2 || c2 == 2 || trisDealer();
+    public static boolean tris(){
+        for(int i = 0; i < counter.length; i++)
+            if(counter[i] == 3)
+                return true;
+        return false;
     }
     /**
      * Poker
-     * @param user
      * @return
      */
-    public static boolean poker(User user){
-        /*int c1 = getOccorrenze(user.getC1());
-        int c2 = getOccorrenze(user.getC2());
-
-        if(coppiaInMano(user) && (c1 == 2 || c2 == 2)) return true;
-        return c1 == 3 || c2 == 3;*/
-        int [] counter = getResultsToArray(user);
-
+    public static boolean poker(){
         for(int i = 0; i < counter.length; i++)
             if(counter[i] == 4)
                 return true;
@@ -173,28 +151,26 @@ public class Winner {
      * @return
      */
     public static boolean colore(User user){
-        int []counter = new int[5];
+        int []color = new int[5];
 
-        for(int i = 0; i < counter.length; i++)
-            counter[i] = 0;
+        for(int i = 0; i < color.length; i++)
+            color[i] = 0;
 
-        counter[user.getC1().getSuit()]++;
-        counter[user.getC2().getSuit()]++;
+        color[user.getC1().getSuit()]++;
+        color[user.getC2().getSuit()]++;
 
-        coloreDealer(counter);
+        coloreDealer(color);
 
-        for(int i = 0; i < counter.length; i++)
-            if(counter[i] >= 5)
+        for(int i = 0; i < color.length; i++)
+            if(color[i] >= 5)
                 return true;
         return false;
     }
     /**
      * Full
-     * @param user
      * @return
      */
-    public static boolean full(User user){
-        int [] counter = getResultsToArray(user);
+    public static boolean full(){
         boolean check1 = false;
         boolean check2 = false;
 
@@ -209,11 +185,9 @@ public class Winner {
     }
     /**
      * Scala
-     * @param user
      * @return
      */
-    public static boolean scala(User user){
-        int [] counter = getResultsToArray(user);
+    public static boolean scala(){
         boolean check = true;
 
         for(int i = 0; i < counter.length - 5; i++){
@@ -230,7 +204,6 @@ public class Winner {
      * @return
      */
     public static boolean scalaReale(User user){
-        int [] counter = getResultsToArray(user);
         boolean check = true;
 
         for(int i = 9; i < counter.length - 5; i++){
@@ -242,39 +215,34 @@ public class Winner {
         return false;
     }
 
-
     /**
      * Effettua il controllo e l'assegnazione dei punti di un dato utente
      * @param user
      */
     public static void returnPoints(User user){
+
+        counter = getResultsToArray(user);
+
         if(scalaReale(user)){
             user.point = 1;
-            //scala reale
-        } else if(scala(user) && colore(user)){
+        } else if(scala() && colore(user)){
             user.point = 2;
-            //scala colore
-        } else if(poker(user)){
+        } else if(poker()){
             user.point = 3;
-            //poker
-        } else if(full(user)){
+        } else if(full()){
             user.point = 4;
-            //full
         } else if(colore(user)){
             user.point = 5;
-            //colore
-        } else if(scala(user)){
+        } else if(scala()){
             user.point = 6;
-            //scala
-        } else if(tris(user)){
+        } else if(tris()){
             user.point = 7;
-            //tris
-        } else if(doppiaCoppia(user) || (coppia(user) && coppiaDealer()) || doppiaCoppiaDealer()){
+        } else if(doppiaCoppia()){
             user.point = 8;
-            //doppia coppia
-        } else if(coppia(user) || coppiaDealer()) {
+        } else if(coppia()) {
             user.point = 9;
-            //coppia
+        } else{
+            user.point = 10;
         }
     }
 }

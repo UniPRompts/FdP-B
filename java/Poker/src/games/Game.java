@@ -16,7 +16,8 @@ public class Game {
 
         players.updatePoints();
         players.printPoints();
+        players.printWinner();
 
-        System.out.println("\n" + CardsReleased.print());
+        //System.out.println("\n" + CardsReleased.print());
     }
 }

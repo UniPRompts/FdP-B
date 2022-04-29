@@ -39,4 +39,17 @@ public class Dealer {
             str += cards.get(i) + " ";
         return str;
     }
+
+    /**
+     * Ritorna la somma dei valori delle carte
+     * @return
+     */
+    public static int getSumValueCards(){
+        int sum = 0;
+
+        for(int i = 0; i < cards.size(); i++)
+            sum += cards.get(i).getNumber();
+
+        return sum;
+    }
 }
