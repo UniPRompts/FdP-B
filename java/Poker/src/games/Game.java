@@ -3,11 +3,11 @@ import cards.*;
 import users.*;
 
 public class Game {
-    public static void start(){
+    public static void start(boolean mode){
         Players players = new Players();
         Dealer dealer = new Dealer();
 
-        players.createPlayers();
+        players.createPlayers(mode);
         dealer.giveCards();
         players.giveCards();
 
