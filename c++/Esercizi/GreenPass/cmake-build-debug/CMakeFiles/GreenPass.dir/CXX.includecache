@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/mere/Documents/Desk/Università/Programmazione B/c++/Esercizi/GreenPass/date.cpp
+iostream
+-
+
+/Users/mere/Documents/Desk/Università/Programmazione B/c++/Esercizi/GreenPass/main.cpp
+iostream
+-
+date.cpp
+/Users/mere/Documents/Desk/Università/Programmazione B/c++/Esercizi/GreenPass/date.cpp
+persona.cpp
+/Users/mere/Documents/Desk/Università/Programmazione B/c++/Esercizi/GreenPass/persona.cpp
+
+/Users/mere/Documents/Desk/Università/Programmazione B/c++/Esercizi/GreenPass/persona.cpp
+iostream
+-
+
