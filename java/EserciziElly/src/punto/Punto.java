@@ -1,8 +1,8 @@
 package punto;
 
 public class Punto {
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
     /**
      * Contatore statico che tiene conto di quante
      * allocazioni sono state fatte.
@@ -38,6 +38,16 @@ public class Punto {
     }
 
     /**
+     * Setter
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    /**
      * Override metodo toString
      * @return
      */
@@ -58,5 +68,20 @@ public class Punto {
      */
     public boolean equals(Punto other) {
         return getX() == other.getX() && getY() == other.getY();
+    }
+
+    /**
+     * Metodo che sposta il punto orizzontalmente di una certa distanza
+     * @param value
+     */
+    public void shiftX(int value){
+        setX(getX() + value);
+    }
+    /**
+     * Metodo che sposta il punto verticalmente di una certa distanza
+     * @param value
+     */
+    public void shiftY(int value){
+        setY(getY() + value);
     }
 }
