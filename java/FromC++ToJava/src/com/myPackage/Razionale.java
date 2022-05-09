@@ -25,7 +25,7 @@ public class Razionale {
             this.den = 1;
             System.err.println("Errore - Denominatore uguale a zero!");
         }
-        //simplify();
+        simplify();
     }
     /**
      * Getter
@@ -166,10 +166,22 @@ public class Razionale {
     }
     /**
      * Overload metodo Equals
-     * @param other numero Razionale
+     * @param obj oggetto
      * @return true se i due numeri sono uguali, false altrimenti
      */
-    public boolean equals(Razionale other){
+    public boolean equals(Object obj){
+        if(obj == null)
+            return false;
+        if(this == obj)
+            return true;
+
+        Razionale other;
+
+        if(obj instanceof Integer)
+            other = new Razionale(((Integer) obj).intValue(), 1);
+        else
+            other = (Razionale) obj;
+
         return getNum() == other.getNum() && getDen() == other.getDen();
     }
 
@@ -186,13 +198,14 @@ public class Razionale {
      * @param args
      */
     public static void main(String[] args) {
-        Razionale r1 = new Razionale(2, 3);
+        Razionale r1 = new Razionale(6, 2);
         System.out.println("r1: " + r1);
 
         Razionale r2 = new Razionale(4, 6);
         System.out.println("r2: " + r2);
 
         System.out.println("isSimplified(r2): " + Razionale.isSimplified(r2));
+        System.out.println("equals: " + r1.equals(3));
     }
 
 }
