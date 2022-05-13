@@ -1,5 +1,4 @@
-// Codice del 20/04/2022
-package com.myPackage;
+package razionale;
 import java.util.Scanner;
 
 public class Razionale {
@@ -22,8 +21,9 @@ public class Razionale {
         if(validate(den))
             this.den = den;
         else{
-            this.den = 1;
-            System.err.println("Errore - Denominatore uguale a zero!");
+            throw new DenominatoreUgualeAZero();
+            //this.den = 1;
+            //System.err.println("Errore - Denominatore uguale a zero!");
         }
         simplify();
     }
@@ -67,7 +67,7 @@ public class Razionale {
      */
     public boolean validate(int den){
         if(den == 0)
-            throw new RuntimeException("Denominatore uguale a 0");
+            throw new DenominatoreUgualeAZero();
         return true;
     }
 
@@ -203,9 +203,14 @@ public class Razionale {
         Razionale r1 = null;
 
         try{
-            r1 = new Razionale(6, 0);
+            int den = r1.getDen();
+            //r1 = new Razionale(6, 0);
+        } catch(NullPointerException npe){
+            System.out.println(npe.getMessage());
         } catch(RuntimeException e){
-            System.out.println(e);
+            System.out.println(e.getMessage());
+        } catch(Exception any){
+            System.out.println(any.getMessage());
         }
 
         System.out.println("r1: " + r1);
@@ -218,3 +223,4 @@ public class Razionale {
     }
 
 }
+
