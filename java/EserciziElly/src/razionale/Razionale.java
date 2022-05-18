@@ -1,7 +1,8 @@
 package razionale;
+import java.util.Objects;
 import java.util.Scanner;
 
-public class Razionale {
+public class Razionale implements Comparable<Razionale>{
     private int num;
     private int den;
 
@@ -166,16 +167,39 @@ public class Razionale {
 
         return result;
     }
+
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result += (31 * getNum());
+        result += (31 * getDen());
+
+        return result;
+    }
+
+    /*
+    @Override
+    public int hashCode(){
+        return Objects.hash(den, num);
+    }
+    */
+
+
     /**
      * Overload metodo Equals
      * @param obj oggetto
      * @return true se i due numeri sono uguali, false altrimenti
      */
+    @Override
     public boolean equals(Object obj){
         if(obj == null)
             return false;
         if(this == obj)
             return true;
+        if(getClass() != obj.getClass())
+            return false;
 
         Razionale other;
 
@@ -191,36 +215,15 @@ public class Razionale {
      * Effettua una deep copy dell'oggetto che richiama il metodo
      * @return nuovo obj con stessi valori ma reference diverse
      */
+    @Override
     public Razionale clone(){
         return new Razionale(getNum(), getDen());
     }
 
-    /**
-     * Main
-     * @param args
-     */
-    public static void main(String[] args) {
-        Razionale r1 = null;
-
-        try{
-            int den = r1.getDen();
-            //r1 = new Razionale(6, 0);
-        } catch(NullPointerException npe){
-            System.out.println(npe.getMessage());
-        } catch(RuntimeException e){
-            System.out.println(e.getMessage());
-        } catch(Exception any){
-            System.out.println(any.getMessage());
-        }
-
-        System.out.println("r1: " + r1);
-
-        //Razionale r2 = new Razionale(4, 6);
-        //System.out.println("r2: " + r2);
-
-        //System.out.println("isSimplified(r2): " + Razionale.isSimplified(r2));
-        //System.out.println("r1: " + r1);
+    @Override
+    public int compareTo(Razionale o) {
+        //TODO
+        return 0;
     }
-
 }
 
