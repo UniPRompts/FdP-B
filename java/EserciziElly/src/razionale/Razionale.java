@@ -2,7 +2,7 @@ package razionale;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Razionale implements Comparable<Razionale>{
+public class Razionale {
     private int num;
     private int den;
 
@@ -220,10 +220,12 @@ public class Razionale implements Comparable<Razionale>{
         return new Razionale(getNum(), getDen());
     }
 
-    @Override
-    public int compareTo(Razionale o) {
-        //TODO
-        return 0;
-    }
+//    @Override
+//    public int compareTo(Razionale o) {
+//        int cmp = getDen().compareTo(o.getDen());
+//        if (cmp != 0)
+//            return cmp;
+//        return getSecond().compareTo(o.getSecond());
+//    }
 }
 
