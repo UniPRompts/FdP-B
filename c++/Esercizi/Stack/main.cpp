@@ -8,6 +8,9 @@ class Stack {
         int top;
         int dim;
 
+        /**
+         * Aumenta la dimensione dello stack
+         */
         void allarga() {
             T* tmp = new T[dim + 10];
             for (int i = 0; i < dim; i++)
@@ -19,11 +22,17 @@ class Stack {
         }
 
     public:
+        /**
+         * Costruttore
+         */
         Stack() {
             A = new T[10];
             dim = 10;
             top = 0;
         }
+        /**
+         * Costruttore di copia
+         */
         Stack(const Stack& other){
             A = new T[other.dim];
             for(int i = 0; i < other.top; i++)
@@ -31,10 +40,16 @@ class Stack {
             this->top = other.top;
             this->dim = other.dim;
         }
+        /**
+         * Distruttore
+         */
         ~Stack(){
             delete [] A;
         }
 
+        /**
+         * Inserimento
+         */
         void push(T x) {
             if (top == dim)
                 this->allarga();
@@ -42,6 +57,9 @@ class Stack {
             A[top] = x;
             top++;
         }
+        /**
+         * Estrazione
+         */
         T pop() {
             if (isEmpty())
                 throw out_of_range("Pila vuota!");
@@ -51,13 +69,22 @@ class Stack {
         bool isEmpty() const {
             return top == 0;
         }
+        /**
+         * Ritorna il numero di elementi inseriti
+         */
         int size() const {
             return top;
         }
+        /**
+        * Ritorna l'elemento di indice i
+        */
         T getElement(int i) const {
             return A[i];
         }
 
+        /**
+        * Overloading operatore ==
+        */
         bool operator==(const Stack<T>& other){
             if(this->top != other.top)
                 return false;
@@ -68,9 +95,17 @@ class Stack {
 
             return true;
         }
+
+        /**
+        * Overloading operatore !=
+        */
         bool operator!=(const Stack<T>& other){
             return !operator==(other);
         }
+
+        /**
+        * Overloading operatore =
+        */
         const Stack& operator=(const Stack<T>& other){
             if(this != &other){
                 delete [] A;
@@ -84,6 +119,9 @@ class Stack {
         }
 };
 
+/**
+* Overloading operatore <<
+*/
 template <class T>
 ostream& operator<<(ostream& dest, const Stack<T>& s) {
     dest << "[";
