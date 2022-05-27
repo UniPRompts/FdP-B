@@ -1,14 +1,15 @@
 #include <iostream>
 using namespace std;
 
+template <class T>
 class Stack {
     private:
-        int* A;
+        T* A;
         int top;
         int dim;
 
         void allarga() {
-            int* tmp = new int[dim + 10];
+            T* tmp = new T[dim + 10];
             for (int i = 0; i < dim; i++)
                 tmp[i] = A[i];
 
@@ -19,12 +20,12 @@ class Stack {
 
     public:
         Stack() {
-            A = new int[10];
+            A = new T[10];
             dim = 10;
             top = 0;
         }
         Stack(const Stack& other){
-            A = new int[other.dim];
+            A = new T[other.dim];
             for(int i = 0; i < other.top; i++)
                 A[i] = other.A[i];
             this->top = other.top;
@@ -34,14 +35,14 @@ class Stack {
             delete [] A;
         }
 
-        void push(int x) {
+        void push(T x) {
             if (top == dim)
                 this->allarga();
 
             A[top] = x;
             top++;
         }
-        int pop() {
+        T pop() {
             if (isEmpty())
                 throw out_of_range("Pila vuota!");
             top--;
@@ -53,11 +54,11 @@ class Stack {
         int size() const {
             return top;
         }
-        int getElement(int i) const {
+        T getElement(int i) const {
             return A[i];
         }
 
-        bool operator==(const Stack& other){
+        bool operator==(const Stack<T>& other){
             if(this->top != other.top)
                 return false;
 
@@ -67,13 +68,13 @@ class Stack {
 
             return true;
         }
-        bool operator!=(const Stack& other){
+        bool operator!=(const Stack<T>& other){
             return !operator==(other);
         }
-        const Stack& operator=(const Stack& other){
+        const Stack& operator=(const Stack<T>& other){
             if(this != &other){
                 delete [] A;
-                A = new int[other.dim];
+                A = new T[other.dim];
                 for(int i = 0; i < other.top; i++)
                     A[i] = other.A[i];
                 this->top = other.top;
@@ -83,7 +84,8 @@ class Stack {
         }
 };
 
-ostream& operator<<(ostream& dest, const Stack& s) {
+template <class T>
+ostream& operator<<(ostream& dest, const Stack<T>& s) {
     dest << "[";
     for (int i = 0; i < s.size(); i++) {
         dest << s.getElement(i);
@@ -97,23 +99,28 @@ ostream& operator<<(ostream& dest, const Stack& s) {
 }
 
 int main() {
-    Stack p1;
-    //cout << p1 << endl; // []
+    Stack<int> p1;
+    cout << "p1: " << p1 << endl; // []
     p1.push(7);
     p1.push(9);
     p1.push(11);
     cout << "p1: " << p1 << endl; // [7, 9, 11]
 
-    Stack p2 = p1;
+    Stack<int> p2 = p1;
     cout << "p2: " << p2 << endl;
 
-    Stack p3(p1);
+    Stack<int> p3(p1);
 
     cout << "p3: " << p3 << endl;
 
-    //p1.pop();
-    //cout << p1 << endl; // [7, 9]
+    p1.pop();
+    cout << "p1: " << p1 << endl; // [7, 9]
 
+    Stack<string> p4;
+    p4.push("ciao");
+    p4.push("a");
+    p4.push("tutti");
+    cout << "p4: " << p4 << endl;
 
     return 0;
 }
