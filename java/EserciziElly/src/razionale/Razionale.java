@@ -2,9 +2,9 @@ package razionale;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Razionale {
-    private int num;
-    private int den;
+public class Razionale implements Comparable<Razionale>{
+    private Integer num;
+    private Integer den;
 
     /**
      * Constructor
@@ -32,14 +32,14 @@ public class Razionale {
      * Getter
      * @return Denominatore
      */
-    public int getDen(){
+    public Integer getDen(){
         return this.den;
     }
     /**
      * Getter
      * @return Numeratore
      */
-    public int getNum() {
+    public Integer getNum() {
         return this.num;
     }
 
@@ -168,7 +168,6 @@ public class Razionale {
         return result;
     }
 
-
     @Override
     public int hashCode() {
         int result = 17;
@@ -179,14 +178,6 @@ public class Razionale {
         return result;
     }
 
-    /*
-    @Override
-    public int hashCode(){
-        return Objects.hash(den, num);
-    }
-    */
-
-
     /**
      * Overload metodo Equals
      * @param obj oggetto
@@ -194,11 +185,9 @@ public class Razionale {
      */
     @Override
     public boolean equals(Object obj){
-        if(obj == null)
-            return false;
         if(this == obj)
             return true;
-        if(getClass() != obj.getClass())
+        if(obj == null || getClass() != obj.getClass())
             return false;
 
         Razionale other;
@@ -220,12 +209,21 @@ public class Razionale {
         return new Razionale(getNum(), getDen());
     }
 
-//    @Override
-//    public int compareTo(Razionale o) {
-//        int cmp = getDen().compareTo(o.getDen());
-//        if (cmp != 0)
-//            return cmp;
-//        return getSecond().compareTo(o.getSecond());
-//    }
+    /**
+     * Implementazione metodo dell'interfaccia Comparable
+     * @param other
+     * @return
+     */
+    @Override
+    public int compareTo(Razionale other) {
+        int cmp = getDen().compareTo(other.getDen());
+
+        if(cmp != 0)
+            return cmp * (-1);
+
+        return getNum().compareTo(other.getNum());
+    }
+
+
 }
 

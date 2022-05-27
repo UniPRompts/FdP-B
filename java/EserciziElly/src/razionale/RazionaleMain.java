@@ -2,7 +2,8 @@ package razionale;
 
 public class RazionaleMain {
     public static void main(String[] args) {
-        Razionale r1 = null;
+        Razionale r1 = new Razionale(2, 3);
+        Razionale r2 = new Razionale(1, 3);
 
         /*
         try{
@@ -17,7 +18,7 @@ public class RazionaleMain {
         }
         */
 
-        System.out.println("r1: " + r1);
+        System.out.println(r1.compareTo(r2));
 
         //Razionale r2 = new Razionale(4, 6);
         //System.out.println("r2: " + r2);
