@@ -123,9 +123,20 @@ Razionale operator+(float x, Razionale r) {
     return r.operator+(x);
 }
 
+void operator<<(ostream& dest, Razionale other){
+     other.stampa();
+     dest << endl;
+}
+
+
 int main() {
 	Razionale r1(95,5);
     Razionale r2(3,4);
+
+    Razionale test = r1;
+
+    cout << "test: " << &test << "\n";
+    cout << "r1: " << &r1 << "\n";
 
     Razionale r3 = r1.operator+(r2); // r1.operator+(r2)
 
