@@ -1,10 +1,10 @@
-/*
+package montante;/*
 Es. 5
     Basandosi sulla formula del montante: M=C·(1+i)^n dove:
         C=capitale iniziale
         i=tasso di interesse (float)
         n=numero di anni
-        M=Montante restituito dalla banca dopo n anni al tasso i.
+        M=montante.Montante restituito dalla banca dopo n anni al tasso i.
     Scrivi un programma che dato un il tasso di interesse (ad es.3%) dica
     dopo quanti anni raddoppierà il capitale iniziale.
  */
