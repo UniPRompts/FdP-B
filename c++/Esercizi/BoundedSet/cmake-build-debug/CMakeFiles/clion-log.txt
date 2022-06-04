@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" "/Users/mere/Documents/Desk/Università/Programmazione B/Esercizi/BoundedSet"
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" "/Users/mere/Documents/Desk/Università/Programmazione B/c++/Esercizi/BoundedSet"
 -- The C compiler identification is AppleClang 13.0.0.13000029
 -- The CXX compiler identification is AppleClang 13.0.0.13000029
 -- Detecting C compiler ABI info
@@ -13,4 +13,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/mere/Documents/Desk/Università/Programmazione B/Esercizi/BoundedSet/cmake-build-debug
+-- Build files have been written to: /Users/mere/Documents/Desk/Università/Programmazione B/c++/Esercizi/BoundedSet/cmake-build-debug

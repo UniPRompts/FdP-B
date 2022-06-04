@@ -11,11 +11,6 @@ using namespace std;
 - size: ritorna la dimensione dell'insieme
 - contains: controlla se un elemento è presente nell'insieme
  */
-template <class T>
-struct node{
-    T val;
-    node* next;
-};
 
 template <class T>
 class BoundedSet{
