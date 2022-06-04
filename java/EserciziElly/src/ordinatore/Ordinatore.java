@@ -27,3 +27,4 @@ public class Ordinatore<T extends Comparable>  {
         System.out.println(o2.check("Va"));
     }
 }
+
