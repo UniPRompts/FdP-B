@@ -1,5 +1,4 @@
 package razionale;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Razionale implements Comparable<Razionale>{
@@ -179,7 +178,7 @@ public class Razionale implements Comparable<Razionale>{
     }
 
     /**
-     * Overload metodo Equals
+     * Override metodo Equals
      * @param obj oggetto
      * @return true se i due numeri sono uguali, false altrimenti
      */
@@ -187,13 +186,15 @@ public class Razionale implements Comparable<Razionale>{
     public boolean equals(Object obj){
         if(this == obj)
             return true;
-        if(obj == null || getClass() != obj.getClass())
+        if(obj == null)
             return false;
 
         Razionale other;
 
         if(obj instanceof Integer)
             other = new Razionale(((Integer) obj).intValue(), 1);
+        else if(getClass() != obj.getClass())
+            return false;
         else
             other = (Razionale) obj;
 
@@ -219,11 +220,9 @@ public class Razionale implements Comparable<Razionale>{
         int cmp = getDen().compareTo(other.getDen());
 
         if(cmp != 0)
-            return cmp * (-1);
+            return cmp;
 
         return getNum().compareTo(other.getNum());
     }
-
-
 }
 
