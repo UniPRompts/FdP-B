@@ -11,7 +11,6 @@ public class Main {
 
         try{
             e1.iscrivi(s1);
-            e1.iscrivi(s2);
             //e1.iscrivi(s2);
             e1.iscrivi(s3);
             e1.iscrivi(s4);
@@ -20,11 +19,12 @@ public class Main {
         }
 
         try{
-            e1.verbalizza(s1, 28);
-            //e1.verbalizza(s1, 20);
+            e1.verbalizza(s1, 35);
+            e1.verbalizza(s1, 20);
             e1.verbalizza(s2, 30);
             e1.verbalizza(s3, 15);
             e1.verbalizza(s4, 26);
+            e1.verbalizza(s4, 5);
         } catch (StudenteNonIscrittoException e){
             System.err.println(e);
         } catch (StudenteGiaVerbalizzatoException e){

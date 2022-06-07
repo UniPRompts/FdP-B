@@ -5,6 +5,8 @@ public class Couple<T extends Comparable<T>> {
     private final T second;
 
     public Couple(T first, T second){
+        if (first == null || second == null)
+            throw new NullPointerException();
         this.first = first;
         this.second = second;
     }

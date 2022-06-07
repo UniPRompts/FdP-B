@@ -1,13 +1,13 @@
 package ordinatore;
 
-public class Ordinatore<T extends Comparable>  {
+public class Ordinatore<T extends Comparable<T>>  {
     private T obj;
 
     public Ordinatore(T obj){
         this.obj = obj;
     }
 
-    public int check(T other) throws Exception {
+    public int check(T other) {
         int result = this.obj.compareTo(other);
         System.out.print("Confronto tra " + obj + " e " + other + ": ");
         this.obj = other;
@@ -27,4 +27,3 @@ public class Ordinatore<T extends Comparable>  {
         System.out.println(o2.check("Va"));
     }
 }
-
