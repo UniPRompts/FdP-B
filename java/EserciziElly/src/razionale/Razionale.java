@@ -1,7 +1,7 @@
 package razionale;
 import java.util.Scanner;
 
-public class Razionale implements Comparable<Razionale>{
+public class Razionale implements Comparable<Razionale>, Cloneable {
     private Integer num;
     private Integer den;
 
