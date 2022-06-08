@@ -14,128 +14,138 @@ using namespace std;
 
 template <class T>
 class MultiSet{
-    private:
-        T* A;
-        int dim, top;
+private:
+    T *A;
+    int dim, top;
 
-    public:
-        MultiSet(){
-            this->A = new T[5];
-            this->dim = 5;
-            this->top = 0;
-        }
-        ~MultiSet(){
-            delete[] A;
-        }
-        MultiSet(const MultiSet<T>& other){
-            this->dim = other.getDim();
-            this->top = other.size();
-            this->A = new T[this->dim];
+public:
+    MultiSet(){
+        this->A = new T[5];
+        this->dim = 5;
+        this->top = 0;
+    }
 
-            for(int i = 0; i < this->top; i++)
-                this->A[i] = other.A[i];
-        }
+    ~MultiSet(){
+        delete[] A;
+    }
 
-        int getDim() const{
-            return this->dim;
-        }
-        void output(){
-            for(int i = 0; i < this->top; i++)
-                cout << this->A[i] << " ";
-            cout << endl;
-        }
-        int size() const{
-            return this->top;
-        }
-        T getValue(int index) const {
-            return A[index];
-        }
+    MultiSet(const MultiSet<T> &other){
+        this->dim = other.getDim();
+        this->top = other.size();
+        this->A = new T[this->dim];
 
-        void upgrade(){
-            T* temp = new T[size() + 5];
+        for (int i = 0; i < this->top; i++)
+            this->A[i] = other.A[i];
+    }
 
-            for(int i = 0; i < this->top; i++)
-                temp[i] = this->A[i];
+    int getDim() const{
+        return this->dim;
+    }
 
-            delete[] A;
-            A = temp;
-            this->dim += 5;
+    void output(){
+        for (int i = 0; i < this->top; i++)
+            cout << this->A[i] << " ";
+        cout << endl;
+    }
 
+    int size() const{
+        return this->top;
+    }
+
+    T getValue(int index) const{
+        return A[index];
+    }
+
+    void upgrade(){
+        T *temp = new T[size() + 5];
+
+        for (int i = 0; i < this->top; i++)
+            temp[i] = this->A[i];
+
+        delete[] A;
+        A = temp;
+        this->dim += 5;
+    }
+
+    void add(const T &value){
+        if (top == dim)
+            upgrade();
+
+        this->A[this->top] = value;
+        this->top++;
+    }
+
+    bool contains(const T &value){
+        for (int i = 0; i < this->top; i++)
+            if (this->A[i] == value)
+                return true;
+        return false;
+    }
+    int multiplicity(const T &value){
+        int c = 0;
+        for (int i = 0; i < size(); i++)
+        {
+            if (this->A[i] == value)
+                c++;
         }
-        void add(const T& value){
-            if(top == dim)
-                upgrade();
-
-            this->A[this->top] = value;
-            this->top++;
-        }
-
-        bool contains(const T& value){
-            for(int i = 0; i < this->top; i++)
-                if(this->A[i] == value)
-                    return true;
-            return false;
-        }
-        int multiplicity(const T& value){
+        return c;
+    }
+    void remove(const T &value){
+        if (contains(value))
+        {
+            T *temp = new T[this->dim];
             int c = 0;
-            for(int i = 0; i < size(); i++){
-                if(this->A[i] == value)
+
+            for (int i = 0; i < this->size(); i++)
+            {
+                if (this->A[i] != value)
+                {
+                    temp[c] = this->A[i];
                     c++;
-            }
-            return c;
-        }
-        void remove(const T& value){
-            if(contains(value)){
-                T* temp = new T[this->dim];
-                int c = 0;
-
-                for(int i = 0; i < this->size(); i++) {
-                    if (this->A[i] != value) {
-                        temp[c] = this->A[i];
-                        c++;
-                    }
                 }
+            }
 
-                this->A = temp;
+            delete[] A;
 
-                this->top = c;
+            this->A = temp;
 
-            } else
-                throw string("Elemento non rimosso perche' non presente");
-
+            this->top = c;
         }
+        else
+            throw string("Elemento non rimosso perche' non presente");
+    }
 
-        MultiSet<T>& operator=(const MultiSet<T>& other){
-            delete [] this->A;
-            this->dim = other.getDim();
-            this->top = other.size();
+    MultiSet<T> &operator=(const MultiSet<T> &other){
+        delete[] this->A;
+        this->dim = other.getDim();
+        this->top = other.size();
 
-            this->A = new T[this->dim];
+        this->A = new T[this->dim];
 
-            for(int i = 0; i < other.size(); i++)
-                this->A[i] = other.A[i];
+        for (int i = 0; i < other.size(); i++)
+            this->A[i] = other.A[i];
 
-            return *this;
-        }
-        MultiSet<T> operator+(const MultiSet<T>& other){
-            MultiSet<T> new_multiset;
+        return *this;
+    }
+    MultiSet<T> operator+(const MultiSet<T> &other){
+        MultiSet<T> new_multiset;
 
-            for(int i = 0; i < this->top; i++)
-                new_multiset.add(this->A[i]);
-            for(int i = 0; i < other.size(); i++)
-                new_multiset.add(other.getValue(i));
+        for (int i = 0; i < this->top; i++)
+            new_multiset.add(this->A[i]);
+        for (int i = 0; i < other.size(); i++)
+            new_multiset.add(other.getValue(i));
 
-            return new_multiset;
-        }
+        return new_multiset;
+    }
 };
 
 template <class T>
-ostream& operator<<(ostream& dest, MultiSet<T> other){
+ostream &operator<<(ostream &dest, MultiSet<T> other){
     other.output();
     return dest;
 }
 
-int main() {
+int main(){
     MultiSet<int> m1;
     m1.add(1);
     m1.add(2);
@@ -160,17 +170,20 @@ int main() {
     cout << "size: " << m3.size() << endl;
     cout << "m3: " << m3 << endl;
 
-    if(m3.contains(1))
+    if (m3.contains(1))
         cout << "m3 contiene 1" << endl;
-    if(!m3.contains(9))
+    if (!m3.contains(9))
         cout << "m3 non conteine 9" << endl;
 
-    cout << "1 è contenuto " << m3.multiplicity(1) << " volte\n" << endl;
+    cout << "1 è contenuto " << m3.multiplicity(1) << " volte\n"
+         << endl;
 
-
-    try{
+    try
+    {
         m3.remove(2);
-    } catch (string e){
+    }
+    catch (string e)
+    {
         cout << e << endl;
     }
 
