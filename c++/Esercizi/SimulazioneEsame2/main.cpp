@@ -31,6 +31,24 @@ class Inventory{
             dim = 5;
             top = 0;
         }
+        /**
+         * Costruttore di copia
+         */
+        Inventory(const Inventory<T>& other){
+            A = new T[other.dim];
+
+            for(int i = 0; i < other.top; i++)
+                A[i] = other.A[i];
+
+            this->top = other.top;
+            this->dim = other.dim;
+        }
+        /**
+         * Distruttore
+         */
+        ~Inventory(){
+            delete [] A;
+        }
 
         // getter
         int getSize(){
@@ -82,6 +100,27 @@ class Inventory{
             }
             else
                 throw string("Inventario vuoto! - Impossibile ottenere l'elemento che occorre più spesso.");
+         }
+
+         /**
+          * Overload operatore =
+          * @param other
+          * @return
+          */
+         Inventory<T>& operator=(Inventory<T> other){
+             if(this != &other){
+                 delete [] A;
+
+                 A = new T[other.dim];
+
+                 for(int i = 0; i < other.top; i++)
+                     A[i] = other.A[i];
+
+                 this->top = other.top;
+                 this->dim = other.dim;
+
+             } else
+                 return *this;
          }
 
 };

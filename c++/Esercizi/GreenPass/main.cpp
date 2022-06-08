@@ -101,7 +101,6 @@ public:
         dest << "Data Guarigione: ";
         dataGenerazione.stampa(dest);
         dest << endl;
-        dest << "Codice fiscale: " << cf << endl;
 
         dest << "Variante: ";
         switch (variante) {
