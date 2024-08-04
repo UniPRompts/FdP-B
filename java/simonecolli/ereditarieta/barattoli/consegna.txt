@@ -1,0 +1,11 @@
+Creare innanzitutto la classe Barattolo che serve per rappresentare 
+dei barattoli caratterizzandoli col volume e
+la quantità di contenuto effettivamente presente nei barattoli, 
+scrivere anche i metodi necessari.
+Successivamente realizzare la classe saliera, che rappresenta 
+i barattoli adibiti a contenere e dosare il sale,
+ogni saliera ha un tot numero di buchini da ognuno dei quali 
+quando viene capovolta esce una quantità unitaria di sale.
+Create le classi si realizzi un main per testarle.
+Si proceda con due realizzazioni distinte delle classi, 
+la prima volta senza usare protected, la seconda usando protected.
